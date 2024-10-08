@@ -1,0 +1,17 @@
+
+Considere duas estrutura de dados do tipo fila, chamadas A e B. Na fila A, foram inseridos
+(nessa ordem) os seguintes valores: 10, 20 e 30. E, na fila B, foram inseridos (nessa
+ordem) os seguintes valores: 30, 20 e 10. Para ambas as estruturas, considere as seguintes
+operações:
+
+    dequeue(F): que remove um elemento da fila F e retorna esse elemento;
+    enqueue(F, E): que insere o elemento E na fila F;
+    head(F): que retorna o elemento do início da fila, sem removê-lo da estrutura.
+    Quais serão as sequências de elementos nas filas A e B, após executar a expressão
+    "enqueue(A, dequeue(A) + dequeue(B) + head(A))"?
+
+
+A = 10, 20, 30;
+
+B = 30, 20 10;
+

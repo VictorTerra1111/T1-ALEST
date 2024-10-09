@@ -198,7 +198,23 @@ public:
             aux = aux->next;
         }
         cout << "|" << endl;
-
     }
 
+    void reverse(Node **head, Node **tail) {
+        if (*head == nullptr || *tail == nullptr) return;  //se estiver vazia
+
+        Node *aux = *head; // ponteiro auxiliar
+        Node *temp = nullptr;
+
+        while (aux != nullptr) {
+            temp = aux->prev;        // Guarda o ponteiro anterior
+            aux->prev = aux->next;  // Inverte o ponteiro os ponteiros prev e next do nodo
+            aux->next = temp;        
+            aux = aux->prev;     // vai para o proximo nodo (agora esta virado)
+        }
+        //ajeita os ponteiros head e tail para as posicoes iniciais
+        temp = *head;
+        *head = *tail;
+        *tail = temp;
+    }
 };

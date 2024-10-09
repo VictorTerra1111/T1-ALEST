@@ -21,7 +21,7 @@ public:
   bool push(const char e);
   bool pop(char &e);
   bool top(char &e) const;
-  string str() const; // APENAS PARA DEPURACAO
+  string str() const; 
 };
 
 #endif

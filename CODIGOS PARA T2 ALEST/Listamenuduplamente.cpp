@@ -202,3 +202,58 @@ public:
     }
 
 };
+
+int main(){
+    List list;
+    string c;
+    bool fim = false;
+    unsigned pos;
+    int index,  c_int;
+    cout << " '<' = PUSH_FRONT / '>' = PUSH_BACK / '{ ' = POP_FRONT / '}' = POP_BACK '+' = INSERT / '-' = REMOVE / '.' = QUIT " << endl;
+
+    while (!fim){
+        list.str();
+        cin >> c;
+        if(c == "<") c_int = 0;
+        else if(c == ">") c_int = 1;
+        else if(c == "+") c_int = 2;
+        else if(c == "{") c_int = 3;
+        else if(c == "}") c_int = 4;
+        else if(c == "-") c_int = 5;
+        else if(c == ".") c_int = 6;
+        
+        switch (c_int){
+        case 0:
+            cin >> c;
+            list.add(0, c);
+            break;
+        case 1:
+            cin >> c; 
+            index = list.size();
+            list.add(index, c);
+            break;
+        case 2:
+            cin >> c >> pos; 
+            list.add(pos, c);
+            break;
+        case 4:  // pop back
+            if (list.size() > 0) list.remove(list.size() - 1);
+            else cout << "ERRO" << endl;
+            break;
+        case 3: 
+            if (list.size() > 0) list.remove(0);
+            else cout << "ERRO" << endl;
+            break;
+        case 5:
+            cin >> pos;
+            if (list.size() > 0) list.remove(pos);
+            else cout << "ERRO" << endl;
+            break;
+        case 6:
+            fim = true;
+            break;
+        }
+    }
+    list.clear();
+    return 0;
+}

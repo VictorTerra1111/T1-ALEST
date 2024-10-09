@@ -2,16 +2,15 @@
 
 using namespace std;
 
-template <typename T> //   IntArrayList<int> list(tamanho_maximo); gera um arraylist do tipo especificado
 class IntArrayList {
 public: 
     int max, num;
-    T* list; 
+    int * list; 
 
     IntArrayList(int vmax) { // ver tamanho maximo caso sem parametro 
         max = vmax;
         num = 0;
-        list = new T[max]; 
+        list = new int[max]; 
     }
 
     ~IntArrayList() {
@@ -28,14 +27,14 @@ public:
     bool isFull() const { return num == max; }
     bool isEmpty() const { return num == 0; }
 
-    bool add(const T e) {
+    bool add(const int e) {
         if (isFull()) return false;
         list[num] = e;
         ++num;
         return true;
     }
 
-    bool add(const int index, const T e) { 
+    bool add(const int index, const int e) { 
         if (isFull() || index < 0 || index > num) return false; 
         for (int i = num; i > index; --i) 
             list[i] = list[i - 1]; 
@@ -44,13 +43,13 @@ public:
         return true;
     }
 
-    bool get(const int index, T &e) { 
+    bool get(const int index, int &e) { 
         if (isEmpty() || index < 0 || index >= num) return false; 
         e = list[index];
         return true;
     }
     
-    bool set(const int index, const T &e) { 
+    bool set(const int index, const int &e) { 
         if (index < 0 || index >= num) return false; 
         list[index] = e;
         return true;
@@ -64,14 +63,14 @@ public:
         return true;
     }
 
-    bool contains(const T e) { 
+    bool contains(const int e) { 
         for (int i = 0; i < num; i++) {
             if (list[i] == e) return true;
         }
         return false;
     }
 
-    int indexOf(const int pos, const T e) { 
+    int indexOf(const int pos, const int e) { 
         if (pos < 0 || pos >= num) return -1; 
         for (int i = pos; i < num; i++) {
             if (list[i] == e) return i;
@@ -79,7 +78,7 @@ public:
         return -1; 
     }
 
-    int indexOf(const T e) {
+    int indexOf(const int e) {
         return indexOf(0, e);
     }
 };

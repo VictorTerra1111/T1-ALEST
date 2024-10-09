@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-// PARA ZIPAR PASTA:  zip -r <zip file name> <directory name>
+// cd directory, then     zip ../nome.zip *
 struct Node{
     int data;
     Node *next;

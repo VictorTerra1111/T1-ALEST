@@ -13,7 +13,6 @@ struct Node{
     }
 };
 
-template <typename T> // List<int> list; gera uma lista do tipo especificado
 
 class List {
 private: 
@@ -44,7 +43,7 @@ public:
 
 
 
-    bool add(const T e) {
+    bool add(const string e) {
         Node *novo = new Node(e); // Cria Node com o valor 'e'.
         if (head == nullptr) {     // se tiver vazio
             head = tail = novo;
@@ -57,7 +56,7 @@ public:
         return true;
     }
 
-    bool add(const int index, const T e) { 
+    bool add(const int index, const string e) { 
         if (index < 0 || index > num) return false; // Verifica se o índice é válido
 
         Node *novo = new Node(e); //novo nodo
@@ -80,7 +79,7 @@ public:
         return true;
     }
 
-    bool get(const int index, T &e) { 
+    bool get(const int index, string &e) { 
         if (index < 0 || index >= num) return false; // Índice inválido
 
         Node *aux = head; //ponteiro auxiliar 
@@ -89,7 +88,7 @@ public:
         return true;
     }
     
-    bool set(const int index, const T &e) { 
+    bool set(const int index, const string &e) { 
         if (index < 0 || index >= num) return false; // Índice inválido
 
         Node *aux = head;
@@ -121,7 +120,7 @@ public:
         return true;
     }
 
-    bool contains(const T e) {  // pesquisa linear na lista
+    bool contains(const string e) {  // pesquisa linear na lista
         Node *aux = head; //cria um vetor auxiliar no head e modifica a posicao dele
 
         while (aux != nullptr) {
@@ -131,7 +130,7 @@ public:
         return false;
     }
 
-    int indexOf(const int pos, const T e) { // pesquisa linear a partir da posicao fornecida 
+    int indexOf(const int pos, const string e) { // pesquisa linear a partir da posicao fornecida 
         if (pos < 0 || pos >= num) return -1; // Índice inicial inválido
 
         Node *aux = head; //cria vetor auxiliar
@@ -148,7 +147,7 @@ public:
         return -1; // se nao existe, retorna indice invalido 
     }
 
-    int indexOf(const T e) { // retorna indice com pesquisa linear
+    int indexOf(const string e) { // retorna indice com pesquisa linear
         return indexOf(0, e);
     }
 
@@ -167,7 +166,7 @@ public:
 };
 
 int main(){
-    List<string> list;
+    List list;
     string c;
     bool fim = false;
     unsigned pos;

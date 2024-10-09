@@ -3,22 +3,20 @@
 
 using namespace std;
 
-template <typename T>
 struct Node { // nodo base
     Node *next;
     Node *prev; // antes e depois
-    T data; // tipo genérico T
+    int data; 
     
-    Node(T vdata) { 
+    Node(int vdata) { 
         data = vdata;
         next = prev = nullptr; // inicializa os dois
     }
 };
 
-template <typename T>
 class IntQueue {
 private:
-    Node<T> *head, *tail; // Usar Node<T>
+    Node *head, *tail; // Usar Node<T>
     int num;
     int max;
 
@@ -35,7 +33,7 @@ public:
 
     void clear() {
         while (head != nullptr) {
-            Node<T> *aux = head;
+            Node *aux = head;
             head = head->next;
             delete aux;
         }
@@ -47,10 +45,10 @@ public:
     bool isEmpty() const { return num == 0; }
     bool isFull() const { return num == max; }
 
-    bool addFirst(const T e) { 
+    bool addFirst(const int e) { 
         if (num == max) return false;
         
-        Node<T> *aux = new Node<T>(e); // Node<T>
+        Node *aux = new Node(e); 
         if (num == 0) head = tail = aux;
         else {
             aux->next = head;
@@ -61,10 +59,10 @@ public:
         return true;
     }
     
-    bool addLast(const T e) { 
+    bool addLast(const int e) { 
         if (num == max) return false;
         
-        Node<T> *aux = new Node<T>(e); // Node<T>
+        Node*aux = new Node(e);
         if (num == 0) head = tail = aux;
         else {
             aux->prev = tail;
@@ -75,12 +73,12 @@ public:
         return true;
     }
 
-    bool removeFirst(T &e) { 
+    bool removeFirst(int &e) { 
         if (num == 0) return false;
         
         e = head->data; 
         
-        Node<T> *aux = head;
+        Node *aux = head;
         head = head->next;
         if (head == nullptr) tail = nullptr;
         else head->prev = nullptr;
@@ -91,11 +89,11 @@ public:
         return true;
     }
     
-    bool removeLast(T &e) { 
+    bool removeLast(int &e) { 
         if (num == 0) return false;
         
         e = tail->data; 
-        Node<T> *aux = tail;
+        Node *aux = tail;
         tail = tail->prev;
         if (tail == nullptr) head = nullptr;
         else tail->next = nullptr;
@@ -106,14 +104,14 @@ public:
         return true;
     }
 
-    bool first(T &e) { 
+    bool first(int &e) { 
         if (num == 0) return false;
 
         e = head->data;
         return true;
     }
 
-    bool last(T &e) { 
+    bool last(int &e) { 
         if (num == 0) return false;
 
         e = tail->data;

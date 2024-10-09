@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream> // para 
 // codigo pilha simplesmente encadeada do tipo inteiro, vou comentar onde precisa mudar para os tipos
 using namespace std;
 
@@ -71,9 +72,19 @@ class IntStack{
             if(num == max) return true;
             return false;
         }
-        string str() const{ // depende do exercicio
-            return "";
+        string str() const{ // depende do exercicio, serve para qualquer estrutura
+            int i; stringstream ss;
+            Node *aux = head;
+            ss << "|";
+            for (i = 0; i < num ; ++ i){
+                ss << aux->data << "|";
+                aux = aux->next;
+            } 
+
+            for (; i < max ; ++ i) ss << " |";
+            return ss . str ();
         }
+
 };
 
 int main(){ // para testar pilha
@@ -99,7 +110,7 @@ int main(){ // para testar pilha
  
         cout << stack.maxSize() << endl;
         cout << stack.isEmpty() << endl;
-        cout << stack.isFull() << endl;
+        cout << stack.isFull() << endl << endl;
     }
     return 0;
 }

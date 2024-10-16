@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-// cd directory, then     zip ../nome.zip *
+// cd directory, then     zip ../JoaoVictorTerraPereira.zip *
 struct Node{
     int data;
     Node *next;

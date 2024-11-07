@@ -1,23 +1,18 @@
 #include <iostream>
+#include <string>
 #include <sstream>
 
 using namespace std;
+template <namespace T>
 
 struct Node
 {
-    int info;
+    T info;
     Node *left, *right, *parent;
 
-    Node(int vinfo, Node *vr = nullptr, Node *vl = nullptr, Node *father = nullptr)
+    Node(T vinfo)
     {
-        info = vinfo;
-        left = vl;
-        right = vl;
-        parent = father;
-        if (left != nullptr)
-            left->parent = this;
-        if (right != nullptr)
-            right->parent = this;
+        info = vinfo; left = right = parent = nullptr;
     }
 
     ~Node()
@@ -30,21 +25,19 @@ struct Node
 
     bool isInternal(Node *v)
     {
-        if (parent != nullptr && left != nullptr || right != nullptr)
-            return true;
+        if (parent != nullptr && left != nullptr || right != nullptr) return true;
         return false;
     }
 
     bool isExeternal(Node *v)
     {
-        if (parent != nullptr && left != nullptr || right != nullptr)
-            return false;
+        if (parent != nullptr && left != nullptr || right != nullptr) return false;
         return true;
     }
+
     bool isRoot(Node *v)
     {
-        if (parent != nullptr)
-            return true;
+        if (parent != nullptr) return true;
         return false;
     }
 };
@@ -53,25 +46,15 @@ class Tree
 {
 private:
     int num;
-
+    Node * root; 
 public:
     Tree()
     {
+        root = nullptr;
+        num = 0;
     }
 
-    Node root()
-    {
-    }
-
-    Node parent(Node *v)
-    {
-    }
-
-    Node children(Node *v)
-    {
-    }
-
-    int size() { return num; }
+    Node getRoot() { return root; }
 
     int size(Node *subtree)
     {
@@ -82,17 +65,8 @@ public:
 
     bool isEmpty()
     {
-        if (num != 0)
-            return false;
+        if (num != 0) return false;
         return true;
-    }
-
-    int iterator(){ return 0;}
-   
-    // positions(){}
-    
-    int replaceElements(int v, int e){
-        return v;
     }
 
     int degree(Node *subtree)
@@ -101,7 +75,6 @@ public:
         int filhos = 0;
         if(left != nullptr) filhos++; 
         if(right != nullptr) filhos++; 
-
         return filhos;
     }
 
@@ -121,11 +94,15 @@ public:
     {
         if(subtree == nullptr) return -1;
         if(subtree->left == nullptr && subtree->right == nullptr) return 0;
-        int altura = 1;
+        int altdir = 0;
+        int altesq = 0;
+        if(subtree->left != nullptr) return 1 + height (subtree->left);
         
+        if(subtree->right != nullptr) return 1 + height (subtree->right);
 
+        if(altdir > altesq) return altdir;
         
-        return altura;
+        return altesq;
     }
 
     string strNode(Node *Node)
@@ -149,8 +126,3 @@ public:
         return ss.str();
     }
 };
-
-int main(){
-
-    return 0;
-}

@@ -28,21 +28,25 @@ string strGraphViz() const
 template <typename T>
 void add(const T &e)
 {
+    Node<T> aux = root;
+    while (aux->info < e){
+        // terminar - tem que ser recursivo
+    }
 }
 
 template <typename T>
 bool contains(const T &e)
 {
-    bool achou = false;
     Node<T> aux = root;
     while (aux->info != e)
     {
         if (aux->info > e)
             aux = aux->left;
-        else
+        else if (aux->info < e)
             aux = aux->right;
-        if (aux == nullptr)
-            break;
+        else if(root == nullptr)
+            return false;
     }
+
     return true;
 }

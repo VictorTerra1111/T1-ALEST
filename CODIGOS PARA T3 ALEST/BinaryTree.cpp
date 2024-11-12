@@ -40,145 +40,166 @@ public:
 };
 
 template <typename T>
-NodeBT::NodeBT(T const &i)
+NodeBT<T>::NodeBT(T const &i)
 {
-
+    parent = left = right = nullptr;
+    info = i;
 } // Cria um nodo com a informal ção i, e sem pai
 template <typename T>
-NodeBT::~NodeBT()
+NodeBT<T>::~NodeBT()
 {
 
 } // Destr ói o nodo atual e seus descendentes
 template <typename T>
-T NodeBT::getInfo() const
+T NodeBT<T>::getInfo() const
 {
-    return nullptr;
+    return info;
 } // Retorna a informa ção armazenada no nodo atual
 template <typename T>
-void NodeBT::setInfo(T &i)
-{
-
+void NodeBT<T>::setInfo(T &i)
+{   
+    info = i;
 } // Altera a informa ção armazenada no nodo atual
 template <typename T>
-NodeBT *NodeBT::getParent() const
+NodeBT<T> *NodeBT<T>::getParent() const
 {
-    return nullptr;
+    return parent;
 } // Retorna a refer ê ncia para o nodo - pai do nodo atual
 template <typename T>
-NodeBT *NodeBT::getLeft() const
+NodeBT<T> *NodeBT<T>::getLeft() const
 {
-    return nullptr;
+    return left;
 } // Retorna a refer ê ncia para o nodo - fiho / sub á rvore da esquerda
 template <typename T>
-NodeBT *NodeBT::getRight() const
+NodeBT<T> *NodeBT<T>::getRight() const
 {
-    return nullptr;
+    return right;
 } // Retorna a refer ê ncia para o nodo - fiho / sub á rvore da direita
 
 template <typename T>
-void NodeBT::setLeft(NodeBT *subtree)
+void NodeBT<T>::setLeft(NodeBT *subtree)
 {
+    if (left != nullptr)
+        delete left;
+    left = subtree;
 
 } // Adiciona uma sub á rvore como subá rvore da esquerda do nodo atual
 
 template <typename T>
-void NodeBT::setRight(NodeBT *subtree)
+void NodeBT<T>::setRight(NodeBT *subtree)
 {
-
+    if (right != nullptr)
+        delete left;
+    right = subtree;
 } // Adiciona uma subá rvore como subá rvore da direita do nodo atual
 
 template <typename T>
-void NodeBT::removeLeft()
+void NodeBT<T>::removeLeft()
 {
 
 } // Remove a sub á rvore da esquerda ( desalocando -a, se necess á rio )
 
 template <typename T>
-void NodeBT::removeRight()
+void NodeBT<T>::removeRight()
 {
 
 } // Remove a sub á rvore da direita ( desalocando -a, se necess á rio )
 
 template <typename T>
-bool NodeBT::isRoot() const
+bool NodeBT<T>::isRoot() const
 {
     return false;
 } // Retorna true se o nodo for raiz
 
 template <typename T>
-bool NodeBT::isInternal() const
+bool NodeBT<T>::isInternal() const
 {
     return false;
 } // Retorna true se o nodo for interno
 
 template <typename T>
-bool NodeBT::isExternal() const
+bool NodeBT<T>::isExternal() const
 {
     return false;
 } // Retorna true se o nodo for externo
 
 template <typename T>
-int NodeBT::degree() const
+int NodeBT<T>::degree() const
 {
-    return 0;
+    int filhos = 0;
+    if (left != nullptr)
+        filhos++;
+    if (left != nullptr)
+        filhos++;
+    return filhos;
 } // Retorna o grau (nú mero de filhos ) do nodo atual
 
 template <typename T>
-int NodeBT::depth() const
+int NodeBT<T>::depth() const
 {
     return 0;
 } // Retorna o ní vel do nodo atual
 
 template <typename T>
-int NodeBT::height() const
+int NodeBT<T>::height() const
 {
-    return 0;
+    in alt = 0;
+    while(parent != nullptr){
+        ++alt;
+        parent = parent->parent;
+    }
+    return ;
 } // Retorna a altura da subá rvore /á rvore a partir do nodo atual
 
 template <typename T>
-int NodeBT::size() const
+int NodeBT<T>::size() const
 {
-    return 0;
-} // Retorna o nú mero de nodos a partir do nodo atual
+    int res = 1;
+    if (left != nullptr)
+        res += left.size();
+    if (right != nullptr)
+        res += right.size();
+    return res;
+} // V
 
 template <typename T>
-bool NodeBT::contains(T &i) const
+bool NodeBT<T>::contains(T &i) const
 {
     return false;
 } // Retorna true se o nodo atual ou algum de seus descendentes contivere i
 
 template <typename T>
-NodeBT const *NodeBT::find(T const &i) const
+NodeBT<T> const *NodeBT<T>::find(T const &i) const
 {
     return nullptr;
 } // Retorna a refer ê ncia para o nodo , a partir do atual , que cont ém i ou nullptr
 
 template <typename T>
-string NodeBT::strGraphViz() const
+string NodeBT<T>::strGraphViz() const
 {
     return "";
 } // Gera uma representa ção da á rvore a partir do nodo atual no formato GraphViz
 
 template <typename T>
-string NodeBT::preorder() const
+string NodeBT<T>::preorder() const
 {
     return "";
 } // Gera uma cadeia de caracteres (um nodo por linha ) em pré-ordem
 
 template <typename T>
-string NodeBT::postorder() const
+string NodeBT<T>::postorder() const
 {
     return "";
 } // Gera uma cadeia de caracteres (um nodo por linha ) em pós- ordem
 
 template <typename T>
-string NodeBT::inorder() const
+string NodeBT<T>::inorder() const
 {
     return "";
 } // Gera uma cadeia de caracteres (um nodo por linha ) em in - ordem
 
 template <typename T>
-string NodeBT::levelorder() const
+string NodeBT<T>::levelorder() const
 {
     return "";
 } // Gera uma cadeia de caracteres (um nodo por linha ) em largura
